@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int start, end;
+
+    // 사용자에게 구구단 범위를 입력받기
+    printf("구구단을 출력할 범위를 입력하세요 (예: 2 9): ");
+    scanf_s("%d %d", &start, &end);
+
+    // 입력 값이 유효한지 확인
+    if (start < 2 || end > 9 || start > end) {
+        printf("유효하지 않은 범위입니다. 2에서 9 사이의 숫자를 입력하세요.\n");
+        return 1; // 오류가 발생하면 프로그램 종료
+    }
+
+    // 지정한 범위의 구구단 출력
+    for (int i = start; i <= end; i++) {
+        printf("\n%d단\n", i); // 현재 단수 출력
+        for (int j = 1; j <= 9; j++) {
+            // 구구단 계산 및 출력
+            printf("%d x %d = %d\n", i, j, i * j);
+        }
+    }
+
+    return 0; // 프로그램 정상 종료
+}
