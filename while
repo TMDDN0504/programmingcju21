@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    int a, b, original_a, original_b, gcd, lcm;
+
+    // 사용자로부터 두 숫자를 입력받음
+    printf("두 숫자를 입력하세요: ");
+    scanf_s("%d %d", &a, &b);
+
+    // 원래 값을 저장해둠
+    original_a = a;
+    original_b = b;
+
+    // 최대공약수 계산 (유클리드 호제법)
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    gcd = a;
+
+    // 최소공배수 계산
+    lcm = (original_a * original_b) / gcd;
+
+    printf("최대공약수: %d\n", gcd);
+    printf("최소공배수: %d\n", lcm);
+
+    return 0;
+}
