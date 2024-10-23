@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    int a, b, gcd, lcm;
+
+    // 두 숫자를 입력받음
+    printf("두 숫자를 입력하세요: ");
+    scanf("%d %d", &a, &b);
+
+    // 최대공약수(GCD) 계산
+    int temp_a = a;
+    int temp_b = b;
+
+    do {
+        int remainder = temp_a % temp_b; // 나머지 계산
+        temp_a = temp_b; // a에 b 값을 대입
+        temp_b = remainder; // b에 나머지 대입
+    } while (temp_b != 0);
+    gcd = temp_a; // GCD는 마지막에 남은 a 값
+
+    // 최소공배수(LCM) 계산
+    lcm = (a * b) / gcd; // LCM = (a * b) / GCD
+
+    // 결과 출력
+    printf("최대공약수: %d\n", gcd);
+    printf("최소공배수: %d\n", lcm);
+
+    return 0;
+}
