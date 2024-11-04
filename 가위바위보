@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void playGame(int userChoice) {
+    int computerChoice = rand() % 3; // 0: 가위, 1: 바위, 2: 보
+
+    printf("사용자 선택: %s\n", userChoice == 0 ? "가위" : userChoice == 1 ? "바위" : "보");
+    printf("컴퓨터 선택: %s\n", computerChoice == 0 ? "가위" : computerChoice == 1 ? "바위" : "보");
+
+    if (userChoice == computerChoice) {
+        printf("비겼습니다!\n");
+    }
+    else if ((userChoice == 0 && computerChoice == 1) ||
+        (userChoice == 1 && computerChoice == 2) ||
+        (userChoice == 2 && computerChoice == 0)) {
+        printf("졌습니다!\n");
+    }
+    else {
+        printf("이겼습니다!\n");
+    }
+}
+
+int main() {
+    int userChoice;
+
+    // 사용자 입력 받기 (0: 가위, 1: 바위, 2: 보)
+    printf("가위 바위 보 게임을 시작합니다!\n");
+    printf("0: 가위, 1: 바위, 2: 보\n");
+    printf("선택을 입력하세요: ");
+    scanf_s("%d", &userChoice);
+
+    // 입력값 유효성 검사
+    if (userChoice < 0 || userChoice > 2) {
+        printf("잘못된 선택입니다. 0, 1, 2 중 하나를 입력하세요.\n");
+        return 1;
+    }
+
+    srand(time(NULL)); // 랜덤 시드 초기화
+    playGame(userChoice); // 게임 진행
+
+    return 0;
+}
