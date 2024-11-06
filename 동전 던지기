@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+
+#define FLIPS 10000  // 동전 던질 횟수
+#define HEAD 0       // 앞면을 0으로 정의
+#define TAIL 1       // 뒷면을 1로 정의
+
+// 동전 던지기 함수 (0: 앞면, 1: 뒷면)
+int flip_coin() {
+    return rand() % 2;  // 0 또는 1을 랜덤하게 반환
+}
+
+int main() {
+    int heads = 0;  // 앞면 횟수
+    int tails = 0;  // 뒷면 횟수
+    int flip_result;  // 동전 던지기 결과 저장 변수
+
+    // 랜덤 시드 설정 (매 실행 시 다른 결과를 얻기 위함)
+    srand(time(NULL));
+
+    // 동전 던지기 10,000번 반복
+    for (int i = 0; i < FLIPS; i++) {
+        flip_result = flip_coin();  // 동전 던지기 결과
+
+        // 선택문: 앞면(0) 또는 뒷면(1) 확인
+        if (flip_result == HEAD) {
+            heads++;  // 앞면이 나온 경우
+        }
+        else {
+            tails++;  // 뒷면이 나온 경우
+        }
+    }
+
+    // 결과 출력
+    printf("동전 던지기 결과 (10000번)\n");
+    printf("앞면이 나온 횟수: %d\n", heads);
+    printf("뒷면이 나온 횟수: %d\n", tails);
+    printf("앞면 확률: %.4f\n", (float)heads / FLIPS);
+    printf("뒷면 확률: %.4f\n", (float)tails / FLIPS);
+
+    return 0;
+}
