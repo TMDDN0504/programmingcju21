@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+// 배열 출력 함수
+void PrintArray(const int* arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] == -1) {
+            std::cout << "X "; // 사용되지 않은 인덱스 표시
+        } else {
+            std::cout << arr[i] << " ";
+        }
+    }
+    std::cout << std::endl;
+}
+
+// 짝수/홀수 분리 함수
+void CalcEvenOddArray(const int* input, int size, int* evenArray, int* oddArray, int maxSize) {
+    int evenIndex = 0;
+    int oddIndex = 0;
+
+    for (int i = 0; i < size; ++i) {
+        if (input[i] % 2 == 0) {
+            if (evenIndex < maxSize) {
+                evenArray[evenIndex++] = input[i];
+            }
+        } else {
+            if (oddIndex < maxSize) {
+                oddArray[oddIndex++] = input[i];
+            }
+        }
+    }
+
+    // 사용되지 않은 공간을 -1로 초기화
+    for (int i = evenIndex; i < maxSize; ++i) {
+        evenArray[i] = -1;
+    }
+    for (int i = oddIndex; i < maxSize; ++i) {
+        oddArray[i] = -1;
+    }
+}
+
+int main() {
+    const int arraySize = 10;
+    const int maxOutputSize = 10;
+    int inputArray[arraySize];
+    int evenArray[maxOutputSize];
+    int oddArray[maxOutputSize];
+
+    // 랜덤 생성 준비
+    std::srand(std::time(0));
+
+    // 배열 랜덤 생성 (0 ~ 100 사이의 정수)
+    for (int i = 0; i < arraySize; ++i) {
+        inputArray[i] = std::rand() % 101;
+    }
+
+    // 초기 상태 출력
+    std::cout << "랜덤 생성된 배열:" << std::endl;
+    PrintArray(inputArray, arraySize);
+
+    // 짝수/홀수 분리
+    CalcEvenOddArray(inputArray, arraySize, evenArray, oddArray, maxOutputSize);
+
+    // 결과 출력
+    std::cout << "짝수 배열:" << std::endl;
+    PrintArray(evenArray, maxOutputSize);
+
+    std::cout << "홀수 배열:" << std::endl;
+    PrintArray(oddArray, maxOutputSize);
+
+    return 0;
+}
